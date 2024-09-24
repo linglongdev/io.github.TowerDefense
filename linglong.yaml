@@ -1,0 +1,28 @@
+version: "1"
+
+package:
+  id: io.github.TowerDefense
+  name: TowerDefense
+  version: 0.0.0.1
+  kind: app
+  description: |
+    C++ and QT tower defense game
+
+command:
+  - /opt/apps/io.github.TowerDefense/files/bin/TowerDefense
+
+base: org.deepin.foundation/23.0.0
+runtime: org.deepin.Runtime/23.0.1
+
+sources:
+  - kind: git
+    url: https://github.com/francescopasin/tower-defense.git
+    version: master
+    commit: b26425140627615fe013b3bdb2e0bb9d0d7463b9
+
+build: |
+  cd /project/linglong/sources/tower-defense.git
+  git apply ../../../0001-install.patch
+  qmake -makefile PREFIX=${PREFIX} LIB_INSTALL_DIR=${PREFIX}/lib/${TRIPLET}
+  make -j$(nproc)
+  make install

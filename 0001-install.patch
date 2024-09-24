@@ -1,0 +1,52 @@
+From e3efe4b5239f0302a70256e59b711ecc3fb9ee29 Mon Sep 17 00:00:00 2001
+From: wjyrich <1071633242@qq.com>
+Date: Tue, 17 Sep 2024 15:48:34 +0800
+Subject: [PATCH] install
+
+---
+ TowerDefense.desktop | 11 +++++++++++
+ TowerDefense.pro     | 10 +++++++---
+ 2 files changed, 18 insertions(+), 3 deletions(-)
+ create mode 100644 TowerDefense.desktop
+
+diff --git a/TowerDefense.desktop b/TowerDefense.desktop
+new file mode 100644
+index 0000000..d08ad7f
+--- /dev/null
++++ b/TowerDefense.desktop
+@@ -0,0 +1,11 @@
++[Desktop Entry]
++Categories=Accessibility;Qt;Utility;
++Exec=TowerDefense
++Name=TowerDefense
++Name[zh_CN]=TowerDefense
++Icon=slowtime-turret
++StartupNotify=false
++Terminal=false
++Type=Application
++GenericName=TowerDefense
++Version=1.0
+diff --git a/TowerDefense.pro b/TowerDefense.pro
+index 51c482a..9d60857 100644
+--- a/TowerDefense.pro
++++ b/TowerDefense.pro
+@@ -142,9 +142,13 @@ HEADERS += \
+ 
+ 
+ # Default rules for deployment.
+-qnx: target.path = /tmp/$${TARGET}/bin
+-else: unix:!android: target.path = /opt/$${TARGET}/bin
+-!isEmpty(target.path): INSTALLS += target
++target.path = $$PREFIX/bin
++desktop.files = TowerDefense.desktop
++desktop.path = $$PREFIX/share/applications/
++icons.path = $$PREFIX/share/icons/hicolor/apps/
++icons.files = assets/images/turrets/slowtime-turret.png
++
++INSTALLS += target desktop icons
+ 
+ RESOURCES += \
+     resources.qrc \
+-- 
+2.43.4
+
